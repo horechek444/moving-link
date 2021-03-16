@@ -6,6 +6,13 @@ const App = () => {
   const [x, setX] = React.useState(0);
   const [y, setY] = React.useState(0);
 
+  const move = (direction) => {
+    if (direction === 'up') setY((y) => y - 20);
+    if (direction === 'left') setX((x) => x - 20);
+    if (direction === 'down') setY((y) => y + 20);
+    if (direction === 'right') setX((x) => x + 20);
+  };
+
   // без ререндера окно канваса
   React.useEffect(() => {
     const context = canvasRef.current.getContext('2d');
@@ -20,15 +27,28 @@ const App = () => {
     context.fillRect(x, y, 100, 100);
   }, [x, y]);
 
+  // слушатель событий окна для клавиш
+  React.useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.key === 'ArrowUp') move('up');
+      if (event.key === 'ArrowLeft') move('left');
+      if (event.key === 'ArrowDown') move('down');
+      if (event.key === 'ArrowRight') move('right');
+    }
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, []);
+
   return (
     <div className="app">
       <canvas ref={canvasRef}/>
 
       <div className="arrows">
-        <button onClick={() => setY((y) => y - 20)}>Up</button>
-        <button onClick={() => setX((x) => x - 20)}>Left</button>
-        <button onClick={() => setY((y) => y + 20)}>Down</button>
-        <button onClick={() => setX((x) => x + 20)}>Right</button>
+        <button onClick={() => move('up')}>Up</button>
+        <button onClick={() => move('left')}>Left</button>
+        <button onClick={() => move('down')}>Down</button>
+        <button onClick={() => move('right')}>Right</button>
       </div>
 
       <div className="images">

@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.css';
+import useMovement from "./useMovement";
 
 const App = () => {
   const canvasRef = React.useRef(null);
@@ -7,17 +8,7 @@ const App = () => {
   const linkRightRef = React.useRef(null);
   const linkUpRef = React.useRef(null);
   const linkLeftRef = React.useRef(null);
-  const [x, setX] = React.useState(0);
-  const [y, setY] = React.useState(0);
-  const [direction, setDirection] = React.useState('down');
-
-  const move = (dir) => {
-    setDirection(dir);
-    if (dir === 'up') setY((y) => y - 20);
-    if (dir === 'left') setX((x) => x - 20);
-    if (dir === 'down') setY((y) => y + 20);
-    if (dir === 'right') setX((x) => x + 20);
-  };
+  const {x, y, direction, move} = useMovement();
 
   // без ререндера окно канваса
   React.useEffect(() => {
@@ -39,19 +30,6 @@ const App = () => {
 
     context.drawImage(theLinkRef.current, x, y);
   }, [x, y]);
-
-  // слушатель событий окна для клавиш
-  React.useEffect(() => {
-    const handleKeyDown = (event) => {
-      if (event.key === 'ArrowUp') move('up');
-      if (event.key === 'ArrowLeft') move('left');
-      if (event.key === 'ArrowDown') move('down');
-      if (event.key === 'ArrowRight') move('right');
-    }
-
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown)
-  }, []);
 
   return (
     <div className="app">

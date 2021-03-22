@@ -1,0 +1,45 @@
+.arrows {
+    display: grid;
+    grid-template: auto auto / auto auto auto;
+    grid-template-areas:
+    '. up .'
+    'left down right';
+    grid-gap: 8px;
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+}
+
+.arrows__arrow {
+    cursor: pointer;
+    font-size: 16px;
+    width: 60px;
+    height: 40px;
+    background: rgba(43, 159, 75, 0.811);
+    color: rgb(167, 220, 182);
+    border: none;
+    border-radius: 8px;
+    outline: none;
+    transition: 0.3s ease all;
+}
+
+.arrows__arrow:hover {
+    background: rgba(51, 177, 87, 0.811);
+    color: #fff;
+}
+
+.arrows__arrow:first-child {
+    grid-area: up;
+}
+
+.arrows__arrow:nth-child(2) {
+    grid-area: left;
+}
+
+.arrows__arrow:nth-child(3) {
+    grid-area: down;
+}
+
+.arrows__arrow:last-child {
+    grid-area: right;
+}

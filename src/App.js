@@ -37,7 +37,11 @@ const App = () => {
     <div className="app">
       <canvas ref={canvasRef}/>
       <Arrows />
-      <Images linkDownRef={linkDownRef} linkLeftRef={linkLeftRef} linkRightRef={linkRightRef} linkUpRef={linkUpRef} />
+      <Images
+        linkDownRef={linkDownRef}
+        linkLeftRef={linkLeftRef}
+        linkRightRef={linkRightRef}
+        linkUpRef={linkUpRef} />
     </div>
   );
 }

@@ -7,10 +7,26 @@ const Arrows = () => {
 
   return (
     <div className="arrows">
-      <button className="arrows__arrow" onClick={() => move('up')}>Up</button>
-      <button className="arrows__arrow" onClick={() => move('left')}>Left</button>
-      <button className="arrows__arrow" onClick={() => move('down')}>Down</button>
-      <button className="arrows__arrow" onClick={() => move('right')}>Right</button>
+      <button
+        className="arrows__arrow"
+        onClick={() => move('up')}>
+        Up
+      </button>
+      <button
+        className="arrows__arrow"
+        onClick={() => move('left')}>
+        Left
+      </button>
+      <button
+        className="arrows__arrow"
+        onClick={() => move('down')}>
+        Down
+      </button>
+      <button
+        className="arrows__arrow"
+        onClick={() => move('right')}>
+        Right
+      </button>
     </div>
   );
 };
